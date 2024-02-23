@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Generator</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+
+    <div id="pdfContainer">
+        <h1 style="text-align:center">Student List</h1>
+        <table class="student-table">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Roll</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Aditya</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Aditya 2</td>
+                    <td>1001</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Aditya 3</td>
+                    <td>1002</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button id="btnPdf" class="btn btn-primary">Generate PDF</button>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // JavaScript
+        $("#btnPdf").click(function () {
+            var sHtml = $("#pdfContainer").html();
+            sHtml = sHtml.replace(/</g, "StrTag").replace(/>/g, "EndTag");
+            var encodedHtml = encodeURIComponent(sHtml);
+            window.open('../Home/GeneratePdf?html=' + encodedHtml, '_blank');
+        });
+    </script>
+
+</body>
+</html>
